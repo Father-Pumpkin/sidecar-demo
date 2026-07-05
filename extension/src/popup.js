@@ -91,4 +91,29 @@ $("savesrc").addEventListener("click", () => {
   });
 });
 
+$("recon").addEventListener("click", async () => {
+  setStatus("Inspecting the open tab…");
+  const tab = await activeTab();
+  if (!tab) return setStatus("Open the target tab first.", "err");
+  try {
+    const results = await chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      world: "MAIN",
+      func: SD_reconPage,
+    });
+    const dump = (results || []).map((r) => r && r.result).find(Boolean);
+    if (!dump) return setStatus("Recon returned nothing.", "err");
+    const text = JSON.stringify(dump, null, 2);
+    console.log("[Sidecar] recon:\n" + text);
+    try {
+      await navigator.clipboard.writeText(text);
+      setStatus(`Recon copied (${dump.counts.inputs} inputs, ${dump.counts.buttons} buttons) — paste it to Claude.`, "ok");
+    } catch {
+      setStatus("Recon in the console (clipboard unavailable).", "err");
+    }
+  } catch (e) {
+    setStatus("Recon failed: " + ((e && e.message) || e), "err");
+  }
+});
+
 loadTickets();

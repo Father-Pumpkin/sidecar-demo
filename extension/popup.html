@@ -39,10 +39,17 @@
       <button id="savesrc">Save</button>
     </details>
 
+    <details>
+      <summary>Adapt to new software (recon)</summary>
+      <p class="sub">Dumps the open tab's fillable surface (inputs, buttons, widget roles) to your clipboard as JSON. Paste it to Claude to draft the selector block for a new target app — or to diagnose what moved after an app update.</p>
+      <button id="recon">🔍 Inspect open tab</button>
+    </details>
+
     <div id="status"></div>
 
     <script src="src/ticket-parser.js"></script>
     <script src="src/filler.js"></script>
+    <script src="src/recon.js"></script>
     <script src="src/popup.js"></script>
   </body>
 </html>

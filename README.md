@@ -6,6 +6,18 @@ authors the structured payload, and a thin browser-extension sidecar lands it in
 the software's UI the way a user would.** No vendor cooperation, no waiting on
 an integration roadmap.
 
+```mermaid
+flowchart LR
+    A["Claude Code plugin<br/><i>workorder-smith</i>"] -- "authors tickets<br/>against the contract" --> B[("Shared source<br/><i>demo: static JSON<br/>prod: token-gated DB lane</i>")]
+    B -- "pick-list" --> C["Sidecar extension<br/><i>parser + in-page filler</i>"]
+    C -- "fills the UI<br/>like a user would" --> D["AcmeOps<br/><i>the API-less software</i>"]
+    D -. "recon dump<br/>(adapt to new targets)" .-> A
+```
+
+| Before | After one click |
+|---|---|
+| ![AcmeOps empty](docs/assets/acmeops-empty.png) | ![AcmeOps filled by the sidecar](docs/assets/acmeops-filled.png) |
+
 The three pieces, all in this repo:
 
 | Piece | Plays the role of |
@@ -32,6 +44,12 @@ The three pieces, all in this repo:
 
 That's the full loop: **Claude authors → contract carries → sidecar lands it in
 software that has no API.**
+
+Presenting it live? [`docs/DEMO-SCRIPT.md`](docs/DEMO-SCRIPT.md) has the
+90-second beat sheet and the objection answers. The closer is the sidecar's
+**Adapt to new software → Inspect** button: run it on *any* app the prospect
+names — the DOM dump it copies is exactly what Claude turns into a new selector
+block, which is how this whole demo got built.
 
 ## Why this matters (the business mapping)
 
