@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "AcmeOps Sidecar (demo)",
+  "version": "0.1.0",
+  "description": "Demo sidecar: pulls work-order tickets from a shared source and fills the API-less AcmeOps UI the way a user would.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "AcmeOps Sidecar"
+  },
+  "permissions": ["scripting", "activeTab", "storage"],
+  "host_permissions": [
+    "https://*.github.io/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*"
+  ]
+}

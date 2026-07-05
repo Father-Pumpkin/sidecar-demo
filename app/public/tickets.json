@@ -1,0 +1,16 @@
+{
+  "tickets": [
+    {
+      "name": "WO-2481 — Replace compressor bearing",
+      "text": "WO-2481: Replace compressor bearing — Line 3\nPriority High | Department Facilities | Status Open\nAssignee R. Vasquez\nDue 2026-07-18\nParts\nBearing 6205-2RS. qty 2 @ 14.50\nSynthetic grease NLGI-2. qty 1 @ 22.00\nSteps\nLockout. Isolate breaker P3-11 and verify zero energy at the panel.\nTeardown. Pull the guard, belt, and pulley; extract the worn bearing.\nRebuild. Press the new bearing, torque to 24 Nm, re-tension the belt.\nVerify. Run 10 minutes; vibration must read under 2.8 mm/s."
+    },
+    {
+      "name": "WO-2492 — Quarterly UPS battery swap",
+      "text": "WO-2492: Quarterly UPS battery swap — Server room B\nPriority Medium | Department IT | Status Open\nAssignee T. Okafor\nDue 2026-07-25\nParts\nAPC RBC55 battery cartridge. qty 2 @ 189.00\nNitrile gloves box. qty 1 @ 9.75\nSteps\nBypass. Put UPS-B2 into maintenance bypass and confirm load transfer.\nSwap. Replace both cartridges; check terminals for corrosion.\nRuntime test. Pull mains for 5 minutes; log runtime and alarms."
+    },
+    {
+      "name": "WO-2503 — Forklift 7 hydraulic leak",
+      "text": "WO-2503: Forklift 7 hydraulic leak — Dock 2\nPriority Critical | Department Fleet | Status In Progress\nAssignee M. Deng\nDue 2026-07-10\nParts\nHydraulic hose 3/8 R2AT. qty 1 @ 31.20\nISO 46 hydraulic fluid 5L. qty 2 @ 42.00\nSteps\nContain. Drip tray under the mast; absorbent socks around the dock plate.\nReplace. Swap the split hose at the lift cylinder; torque fittings to spec.\nBleed and test. Cycle the mast 10 times; verify no weep at full extension."
+    }
+  ]
+}
