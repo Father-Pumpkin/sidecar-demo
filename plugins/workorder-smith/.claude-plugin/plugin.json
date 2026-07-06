@@ -1,6 +1,6 @@
 {
   "name": "workorder-smith",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Author work-order tickets in the exact contract format the AcmeOps sidecar extension parses and fills into the API-less AcmeOps UI.",
   "author": {
     "name": "Mitchel Smith"

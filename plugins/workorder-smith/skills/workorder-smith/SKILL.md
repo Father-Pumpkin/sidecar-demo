@@ -48,16 +48,22 @@ Microsoft 365 / Outlook connector** connected, run the full loop:
    steps as usual; the email is a *request*, not a spec.
 3. **Hand off to the sidecar** (pick-list or paste → Fill) and wait for the
    user to confirm the order is saved in AcmeOps.
-4. **Close the loop:** draft a reply to the requester — WO number, priority,
-   one-line plan. Show the draft; **send only after the user approves.** Never
-   auto-send email.
+4. **Close the loop:** draft the reply text for the requester — WO number,
+   priority, one-line plan — and present it ready to copy, with the original
+   email's `webLink` so the user opens the thread in Outlook and pastes it in
+   one step. **The official M365 connector is read-only** (mail search + read;
+   it has no send/reply tools), so the human clicking Send is part of the
+   design — a governance boundary an org can point to, not a gap.
 
-Two rules that make this pattern portable to any official connector:
+Three rules that make this pattern portable to any official connector:
 
-- **Reference capabilities, not hard-coded tool names.** The connector's tools
-  (search mail, read message, reply/send) are discovered from the connector
-  itself — official connector tool names can change between versions, so don't
-  pin them in prompts.
+- **Verify the capability surface; don't assume it.** Load the connector's
+  actual tool schemas before promising a step — this connector exposes
+  search/read/calendar/SharePoint tools and nothing that sends. Design the
+  workflow around what's really there.
+- **Reference capabilities, not hard-coded tool names.** Official connector
+  tool names can change between versions — describe the capability (search
+  mail, read message) and let the connector's schemas supply the tools.
 - **Graceful degradation is mandatory.** Plugins cannot bundle or install an
   official connector — it's account-level, connected once by the user (or
   pushed org-wide by an admin). If it isn't connected, say so once and fall

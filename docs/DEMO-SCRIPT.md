@@ -50,9 +50,11 @@ urgent"). Then run `/workorder-smith:intake latest`.
 > "Requests don't arrive as tickets — they arrive as email. Claude reads the
 > request through the **official Outlook connector**, drafts the ticket against
 > our contract, the sidecar lands it in the software that has no API, and Claude
-> replies to the requester with the work-order number. Email in, email out — and
-> notice the pieces: the Outlook connector is Anthropic's official catalog item,
-> zero code from us. We only build what's genuinely bespoke."
+> hands you the confirmation reply ready to paste — with a link that opens the
+> exact thread. Email in, email out — and notice the pieces: the Outlook
+> connector is Anthropic's official catalog item, zero code from us. It's also
+> **read-only by design** — Claude can never send mail on its own here. Your
+> security team will like that sentence."
 
 **6. The kicker — their software (10s).**
 Open the sidecar's **Adapt to new software** panel on *any* app they name.

@@ -19,6 +19,10 @@ Request: $ARGUMENTS
    Save to `tickets/<WO-number>.txt` and show the ticket.
 4. Tell the user to place it via the sidecar (pick-list or paste → Fill), and
    ask them to confirm when it's saved in AcmeOps.
-5. On confirmation, **draft a reply** to the requester: WO number, priority,
-   assignee if known, and a one-line summary of the planned steps. Show the
-   draft and send it **only after the user approves** — never auto-send.
+5. On confirmation, **draft the reply text** for the requester: WO number,
+   priority, assignee if known, and a one-line summary of the planned steps.
+   The official M365 connector is **read-only** (search/read — it cannot send
+   mail), so present the draft ready to copy, alongside the original email's
+   `webLink` so the user can open it in Outlook and paste the reply in one
+   step. The human clicking Send is the governance boundary, not a limitation
+   to apologize for.
