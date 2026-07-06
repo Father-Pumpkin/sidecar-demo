@@ -1,6 +1,6 @@
 ---
 name: workorder-smith
-description: Author work-order tickets in the exact contract format the AcmeOps sidecar extension parses and fills into the API-less AcmeOps work-order UI. Use when the user wants to draft, write, or revise a work order / maintenance ticket for the AcmeOps demo.
+description: Author work-order tickets in the exact contract format the AcmeOps sidecar extension parses and fills into the API-less AcmeOps work-order UI. Also handles email intake — turning work-request emails (official Outlook/Microsoft 365 connector) into tickets and sending the requester a confirmation once placed. Use when the user wants to draft, write, or revise a work order / maintenance ticket, or process work requests from their inbox.
 allowed-tools: [Read, Write, Glob]
 ---
 
@@ -32,6 +32,42 @@ Read `${CLAUDE_PLUGIN_ROOT}/skills/workorder-smith/references/ticket-contract.md
    ticket. The user pastes it into the sidecar's manual box, or publishes it to
    the shared ticket source (`app/public/tickets.json` in this repo) so it
    appears in the sidecar's pick-list.
+
+## Email intake — orchestrating the official Outlook connector
+
+Work requests usually start life as email. When the user has the **official
+Microsoft 365 / Outlook connector** connected, run the full loop:
+
+1. **Find the request(s).** Use the connector's mail search/read tools to pull
+   the email(s) the user described (by sender, subject keywords, or the most
+   recent unread request-like messages). Quote the request back briefly so the
+   user confirms you grabbed the right one.
+2. **Draft the ticket from the email.** Map what the email gives you: what's
+   broken and where → Title and Steps; stated urgency ("line is down") →
+   Priority; the affected area/team → Department. Infer sensible parts and
+   steps as usual; the email is a *request*, not a spec.
+3. **Hand off to the sidecar** (pick-list or paste → Fill) and wait for the
+   user to confirm the order is saved in AcmeOps.
+4. **Close the loop:** draft a reply to the requester — WO number, priority,
+   one-line plan. Show the draft; **send only after the user approves.** Never
+   auto-send email.
+
+Two rules that make this pattern portable to any official connector:
+
+- **Reference capabilities, not hard-coded tool names.** The connector's tools
+  (search mail, read message, reply/send) are discovered from the connector
+  itself — official connector tool names can change between versions, so don't
+  pin them in prompts.
+- **Graceful degradation is mandatory.** Plugins cannot bundle or install an
+  official connector — it's account-level, connected once by the user (or
+  pushed org-wide by an admin). If it isn't connected, say so once and fall
+  back to asking for the email text pasted in. Never block on it.
+
+This is the demonstrable point for a business audience: a custom plugin's skill
+can **orchestrate official connectors (Outlook), custom hosted connectors (a
+ticket DB), and a custom sidecar (the API-less app) in one workflow** — the
+official pieces come from the catalog, and only the genuinely bespoke parts are
+custom-built.
 
 ## Production note
 

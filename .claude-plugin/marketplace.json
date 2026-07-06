@@ -11,8 +11,13 @@
       "name": "workorder-smith",
       "source": "./plugins/workorder-smith",
       "description": "Author work-order tickets in the exact contract format the AcmeOps sidecar parses and fills — the demo's 'design in Claude, land in the niche software' lane.",
-      "version": "0.1.0",
-      "keywords": ["demo", "work-orders", "sidecar", "automation"],
+      "version": "0.2.0",
+      "keywords": [
+        "demo",
+        "work-orders",
+        "sidecar",
+        "automation"
+      ],
       "category": "productivity"
     }
   ]

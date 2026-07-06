@@ -43,6 +43,17 @@ file.
 > the role of the API spec the vendor never shipped. In production the tickets
 > sit in a governed database with scoped credentials, not a JSON file."
 
+**5b. The email loop (30s — the enterprise beat).**
+If the official Outlook/M365 connector is connected, send yourself a work-request
+email beforehand ("Compressor on Line 3 is running hot, needs a bearing swap —
+urgent"). Then run `/workorder-smith:intake latest`.
+> "Requests don't arrive as tickets — they arrive as email. Claude reads the
+> request through the **official Outlook connector**, drafts the ticket against
+> our contract, the sidecar lands it in the software that has no API, and Claude
+> replies to the requester with the work-order number. Email in, email out — and
+> notice the pieces: the Outlook connector is Anthropic's official catalog item,
+> zero code from us. We only build what's genuinely bespoke."
+
 **6. The kicker — their software (10s).**
 Open the sidecar's **Adapt to new software** panel on *any* app they name.
 > "This Inspect button dumps any page's fillable surface. That dump is what we

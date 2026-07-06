@@ -45,6 +45,15 @@ The three pieces, all in this repo:
 That's the full loop: **Claude authors → contract carries → sidecar lands it in
 software that has no API.**
 
+**The enterprise variant** — with the **official Outlook / Microsoft 365
+connector** connected (a catalog item, zero custom code): send yourself a
+work-request email, then `/workorder-smith:intake latest`. Claude reads the
+request from the inbox, drafts the contract ticket, you land it with the
+sidecar, and Claude replies to the requester with the WO number. **Email in →
+API-less software → email out.** The point for a business audience: a custom
+plugin's skill orchestrates *official* connectors alongside custom ones and the
+sidecar — you only build what's genuinely bespoke.
+
 Presenting it live? [`docs/DEMO-SCRIPT.md`](docs/DEMO-SCRIPT.md) has the
 90-second beat sheet and the objection answers. The closer is the sidecar's
 **Adapt to new software → Inspect** button: run it on *any* app the prospect
