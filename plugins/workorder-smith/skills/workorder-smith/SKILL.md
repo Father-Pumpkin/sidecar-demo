@@ -48,12 +48,19 @@ Microsoft 365 / Outlook connector** connected, run the full loop:
    steps as usual; the email is a *request*, not a spec.
 3. **Hand off to the sidecar** (pick-list or paste → Fill) and wait for the
    user to confirm the order is saved in AcmeOps.
-4. **Close the loop:** draft the reply text for the requester — WO number,
-   priority, one-line plan — and present it ready to copy, with the original
-   email's `webLink` so the user opens the thread in Outlook and pastes it in
-   one step. **The official M365 connector is read-only** (mail search + read;
-   it has no send/reply tools), so the human clicking Send is part of the
-   design — a governance boundary an org can point to, not a gap.
+4. **Close the loop.** Compose the reply — WO number, priority, one-line plan.
+   How you deliver it depends on which connectors are present:
+   - **If the custom `outlook-write` connector is connected**, call
+     `create_reply_draft(message_id=<the email's id>, body=<the reply>)`. It
+     writes the reply into the user's Outlook **Drafts** and returns a `webLink`;
+     hand the user that link to review and Send. The official M365 connector
+     *read* the request; this custom connector *drafts* the reply — the write
+     capability the official one omits.
+   - **Otherwise** (M365 connector is read-only on its own), present the reply as
+     paste-ready text with the email's `webLink` so the user opens the thread and
+     pastes it. Never block; this fallback always works.
+   Either way, **a human clicks Send** — no connector here sends autonomously.
+   That governance boundary is a feature to name, not a gap to apologize for.
 
 Three rules that make this pattern portable to any official connector:
 
